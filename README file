@@ -1,0 +1,31 @@
+# Vote Asasira Queen Pinklen - GRC Campaign Website
+
+![GRC Campaign](https://img.shields.io/badge/Campaign-GRC%20Election-blue)
+![GitHub Pages](https://img.shields.io/badge/Hosted%20on-GitHub%20Pages-green)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+
+## 🌟 Live Demo
+**Website URL:** `https://[your-username].github.io/grc-campaign-queen/`
+
+## 📋 About This Project
+This is the official campaign website for **Asasira Queen Pinklen**, candidate for **Female Gender Representative Councillor (GRC)** in the **Faculty of Science & Technology**.
+
+##  Features
+- ✅ **Countdown Timer** to election date (February 17, 2026)
+- ✅ **Responsive Design** works on all devices
+- ✅ **Student Feedback System** with anonymous submissions
+- ✅ **Manifesto Display** with 4 key commitments
+- ✅ **Reasons to Vote** section with compelling arguments
+- ✅ **Vote Buttons** linking to vu.ac.ug
+- ✅ **Professional Design** with white, blue, and red theme
+
+## 📁 Project Structure
+grc-campaign-queen/
+├── index.html # Main HTML file
+├── style.css # Stylesheet
+├── script.js # Main JavaScript
+├── feedback.js # Feedback system JavaScript
+├── .nojekyll # GitHub Pages configuration
+├── images/ # Image assets
+│ └── candidate.jpg # Candidate photo
+└── README.md # This file
