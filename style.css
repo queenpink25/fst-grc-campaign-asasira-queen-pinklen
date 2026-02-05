@@ -42,7 +42,7 @@ h1, h2, h3, h4, h5 {
 /* Header with University Building Background */
 header {
     background: linear-gradient(rgba(0, 86, 179, 0.85), rgba(0, 61, 130, 0.9)), 
-                url('https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&auto=format&fit=crop&w=1512&q=80');
+                url('https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fpmldaily.com%2Fwp-content%2Fuploads%2F2024%2F03%2Fimages-14.jpeg&sp=1770252177Tb66bdefcf29867ad430a7d39bbebf69c1d103ce3a4e1db683929a5a2460c6739');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -62,7 +62,7 @@ header {
 
 .logo {
     display: flex;
-    align-items: center;
+    align-items: left;
     gap: 15px;
 }
 

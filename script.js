@@ -1,3 +1,4 @@
+
 // Countdown timer for February 17, 2026
 function updateCountdown() {
     const electionDate = new Date('February 17, 2026 23:59:59').getTime();
