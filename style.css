@@ -42,7 +42,7 @@ h1, h2, h3, h4, h5 {
 /* Header with University Building Background */
 header {
     background: linear-gradient(rgba(0, 86, 179, 0.85), rgba(0, 61, 130, 0.9)), 
-                url('https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fpmldaily.com%2Fwp-content%2Fuploads%2F2024%2F03%2Fimages-14.jpeg&sp=1770252177Tb66bdefcf29867ad430a7d39bbebf69c1d103ce3a4e1db683929a5a2460c6739');
+                url('https://instagram.febb1-1.fna.fbcdn.net/v/t51.2885-19/357639891_2415093551985456_889375887879189096_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby42MDAuYzIifQ&_nc_ht=instagram.febb1-1.fna.fbcdn.net&_nc_cat=100&_nc_oc=Q6cZ2QGS4L8CpUHTZ4DS6VCv6pkCzEeEGtrwSqHoZOJrVAnxfZv6ntWfkc-sWx2b5livp54&_nc_ohc=pACiRagZQekQ7kNvwGl_Wu8&_nc_gid=XM6fGWfABgtNVVFSWEXfjg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfsSdHDHCE-YHd7Uhg_3L8iYc163FXMfdhoeUHUGSE4xmA&oe=698A96EF&_nc_sid=8b3546');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -66,7 +66,7 @@ header {
     gap: 15px;
 }
 
-.logo-icon {
+/* .logo-icon { 
     width: 50px;
     height: 50px;
     background-color: var(--white);
@@ -76,6 +76,19 @@ header {
     justify-content: center;
     color: var(--primary-blue);
     font-size: 1.5rem;
+    font-weight: 700;
+} */
+.logo-icon {
+    width: 100%;
+    max-width: 50px;
+    aspect-ratio: 1 / 1;
+    background-color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-blue);
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
     font-weight: 700;
 }
 
