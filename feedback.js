@@ -13,6 +13,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize feedback count
     updateFeedbackCount();
     
+    // Listen for storage changes (updates across tabs/windows)
+    window.addEventListener('storage', function(e) {
+        if (e.key === 'grcFeedback') {
+            updateFeedbackCount();
+        }
+    });
+    
+    // REAL-TIME UPDATE: Check for new submissions every 2 seconds
+    setInterval(function() {
+        updateFeedbackCount();
+    }, 2000);
+    
     // Toggle name/email fields based on anonymous checkbox
     if (anonymousCheckbox && nameInput && emailInput) {
         anonymousCheckbox.addEventListener('change', function() {
@@ -105,6 +117,10 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('grcFeedback', JSON.stringify(allFeedback));
             
             console.log('Feedback saved successfully. Total submissions:', allFeedback.length);
+            
+            // Trigger storage event for other tabs
+            window.dispatchEvent(new Event('storage'));
+            
         } catch (error) {
             console.error('Error saving feedback:', error);
         }
@@ -132,8 +148,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Calculate total: BASELINE (278) + new submissions
                 const totalCount = BASELINE_COUNT + allFeedback.length;
                 
+                // Get current displayed value
+                const currentDisplay = parseInt(feedbackCountElement.textContent) || 0;
+                
                 // Update the display
                 feedbackCountElement.textContent = totalCount;
+                
+                // Add animation if count changed
+                if (currentDisplay !== totalCount) {
+                    // Add pulse animation
+                    feedbackCountElement.style.transition = 'transform 0.3s ease';
+                    feedbackCountElement.style.transform = 'scale(1.2)';
+                    
+                    setTimeout(() => {
+                        feedbackCountElement.style.transform = 'scale(1)';
+                    }, 300);
+                    
+                    // Show mini notification
+                    showFloatingNotification(`+${totalCount - currentDisplay} new`);
+                }
                 
                 // Add a title to show breakdown on hover
                 feedbackCountElement.title = `${BASELINE_COUNT} baseline + ${allFeedback.length} new submissions`;
@@ -141,5 +174,77 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (error) {
             console.error('Error updating feedback count:', error);
         }
+    }
+    
+    // Floating notification for real-time updates
+    function showFloatingNotification(message) {
+        // Check if notification already exists
+        let notification = document.getElementById('realTimeNotification');
+        
+        if (!notification) {
+            notification = document.createElement('div');
+            notification.id = 'realTimeNotification';
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #1e3c72, #2a5298);
+                color: white;
+                padding: 12px 20px;
+                border-radius: 50px;
+                font-weight: 600;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                z-index: 9999;
+                animation: slideIn 0.5s ease;
+                border-left: 4px solid #ffd700;
+            `;
+            document.body.appendChild(notification);
+        }
+        
+        notification.textContent = `📢 ${message} concern${message.includes('1') ? '' : 's'} received!`;
+        
+        // Hide after 3 seconds
+        setTimeout(() => {
+            notification.style.animation = 'slideOut 0.5s ease';
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 500);
+        }, 3000);
+    }
+    
+    // Add animation styles if they don't exist
+    if (!document.getElementById('realTimeStyles')) {
+        const style = document.createElement('style');
+        style.id = 'realTimeStyles';
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideOut {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+            
+            .stat-number {
+                transition: all 0.3s ease;
+            }
+        `;
+        document.head.appendChild(style);
     }
 });
