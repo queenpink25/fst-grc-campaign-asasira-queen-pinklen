@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const emailInput = document.getElementById('email');
     const feedbackCountElement = document.getElementById('feedbackCount');
     
+    // BASELINE COUNT - This is your starting number from HTML
+    const BASELINE_COUNT = 278;
+    
     // Initialize feedback count
     updateFeedbackCount();
     
@@ -122,11 +125,18 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function updateFeedbackCount() {
         try {
+            // Get new submissions from localStorage
             const allFeedback = JSON.parse(localStorage.getItem('grcFeedback')) || [];
             
             if (feedbackCountElement) {
-                // Update the feedback count
-                feedbackCountElement.textContent = allFeedback.length + '+';
+                // Calculate total: BASELINE (278) + new submissions
+                const totalCount = BASELINE_COUNT + allFeedback.length;
+                
+                // Update the display
+                feedbackCountElement.textContent = totalCount;
+                
+                // Add a title to show breakdown on hover
+                feedbackCountElement.title = `${BASELINE_COUNT} baseline + ${allFeedback.length} new submissions`;
             }
         } catch (error) {
             console.error('Error updating feedback count:', error);
