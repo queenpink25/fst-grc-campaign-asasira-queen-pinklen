@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const feedbackCountElement = document.getElementById('feedbackCount');
     
     // BASELINE COUNT - This is your starting number from HTML
-    const BASELINE_COUNT = 278;
+    const BASELINE_COUNT = 478;
     
     // Initialize feedback count
     updateFeedbackCount();
